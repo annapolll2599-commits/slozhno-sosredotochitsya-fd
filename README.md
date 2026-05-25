@@ -1,1 +1,1 @@
-[README.md](https://github.com/annapolll2599-commits/slozhno-sosredotochitsya-fd.git)
+https://github.com/annapolll2599-commits/slozhno-sosredotochitsya-fd.git
