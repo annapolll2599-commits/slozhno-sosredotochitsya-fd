@@ -1,0 +1,15 @@
+/* Тёмная тема — принудительное переключение по классу на <html> */
+/* Переопределяем только те переменные, которые отличаются от variables.css */
+
+.theme-dark {
+  --color-accent: #ff0070;
+  --color-accent-background: #000028;
+  --color-heading: #db00ff;
+  --color-text: #f1b2ce;
+  --color-background: #000028;
+  --color-button-hover: #ff007066;
+  --color-decorative: #ff0070;
+  --color-rec: #ff0070;
+  --color-corner: #ff0070;
+  --background-image: url(../images/cover-image-dark.png);
+}
