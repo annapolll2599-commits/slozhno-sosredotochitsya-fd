@@ -1,5 +1,454 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
+/* ==============================
+   СТРАНИЦА
+   ============================== */
 
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  background-color: var(--color-background);
+  background-image: var(--background-image);
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* ==============================
+   УТИЛИТАРНЫЙ КЛАСС: TITLE-DECOR
+   Акцентный фон, тёмный текст
+   ============================== */
+
+.title-decor {
+  color: var(--color-accent-background);
+  background-color: var(--color-accent);
+}
+
+/* ==============================
+   ДЕКОРАТИВНЫЕ УГЛОВЫЕ СКОБКИ
+   Переиспользуются в шапке и футере
+   ============================== */
+
+.decorated-zone {
+  position: relative;
+}
+
+.decorated-zone::before {
+  content: '';
+  position: absolute;
+  inset-block-end: var(--spacing-xs);
+  inset-inline-start: var(--spacing-xs);
+  inline-size: 25px;
+  block-size: 25px;
+  border-block-end: 1px solid var(--color-corner);
+  border-inline-start: 1px solid var(--color-corner);
+}
+
+.decorated-zone::after {
+  content: '';
+  position: absolute;
+  inset-block-start: var(--spacing-xs);
+  inset-inline-end: var(--spacing-xs);
+  inline-size: 25px;
+  block-size: 25px;
+  border-block-start: 1px solid var(--color-corner);
+  border-inline-end: 1px solid var(--color-corner);
+}
+
+@media (min-width: 768px) {
+  .decorated-zone::before {
+    inset-block-end: var(--spacing-s);
+    inset-inline-start: var(--spacing-s);
+  }
+
+  .decorated-zone::after {
+    inset-block-start: var(--spacing-s);
+    inset-inline-end: var(--spacing-s);
+  }
+}
+
+/* ==============================
+   ДЕКОРАТИВНЫЙ ЭЛЕМЕНТ REC
+   ============================== */
+
+.decorative-rec {
+  position: absolute;
+  inset-block-start: var(--spacing-xs);
+  inset-inline-end: var(--spacing-s);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-rec);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  text-transform: uppercase;
+}
+
+.decorative-rec__dot {
+  display: block;
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 50%;
+  background-color: var(--color-rec);
+  box-shadow: 0 0 4px 2px var(--color-rec);
+}
+
+@media (min-width: 768px) {
+  .decorative-rec {
+    inset-block-start: var(--spacing-s);
+  }
+}
+
+/* ==============================
+   ШАПКА
+   ============================== */
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+  padding: var(--spacing-xs);
+  min-block-size: 100vh;
+}
+
+@media (min-width: 768px) {
+  .header {
+    grid-template-columns: 1fr 1fr;
+    padding: var(--spacing-s);
+  }
+}
+
+/* Меню переключения тем */
+
+.header__theme-menu {
+  grid-column: 1 / -1;
+  justify-self: end;
+  align-self: start;
+  /* Отступ чтобы меню не перекрывалось с абсолютным элементом REC */
+  padding-block-start: 36px;
+}
+
+@media (min-width: 768px) {
+  .header__theme-menu {
+    grid-column: 2;
+    grid-row: 1;
+    padding-block-start: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__theme-menu {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+  }
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+@media (min-width: 1024px) {
+  .header__theme-menu-list {
+    flex-direction: row;
+  }
+}
+
+.header__theme-menu-button {
+  padding: 1.5px 13px;
+  color: var(--color-decorative);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  text-transform: lowercase;
+  background: transparent;
+  border: 1px solid transparent;
+  appearance: none;
+}
+
+.header__theme-menu-button:hover {
+  border-color: var(--color-button-hover);
+}
+
+.header__theme-menu-button:focus {
+  outline: none;
+}
+
+.header__theme-menu-button:focus-visible {
+  border-block-end-color: var(--color-decorative);
+}
+
+.header__theme-menu-button_active {
+  pointer-events: none;
+  border-color: var(--color-decorative);
+}
+
+/* Заголовок h1 */
+
+.header__title {
+  grid-column: 1 / -1;
+  align-self: center;
+  color: var(--color-heading);
+  font-weight: 700;
+  font-size: var(--font-size-h1-mobile);
+  line-height: 0.825;
+  text-shadow: 4px 4px 0 var(--color-accent);
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .header__title {
+    margin-inline-start: calc(-1 * var(--spacing-s));
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__title {
+    font-size: var(--font-size-h1-desktop);
+  }
+}
+
+/* Подзаголовок в шапке */
+
+.header__subtitle {
+  grid-column: 1 / -1;
+  align-self: end;
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+@media (min-width: 768px) {
+  .header__subtitle {
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
+/* ==============================
+   ОБЩИЕ СТИЛИ ОСНОВНЫХ СЕКЦИЙ
+   ============================== */
+
+.section {
+  display: grid;
+  padding: var(--spacing-m) var(--spacing-xs);
+  gap: var(--spacing-s);
+}
+
+@media (min-width: 768px) {
+  .section {
+    grid-template-columns: 1fr 2fr;
+    padding: var(--spacing-l) var(--spacing-s);
+    gap: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--spacing-xl) var(--spacing-s);
+  }
+}
+
+/* Заголовок секции h2 */
+
+.section__heading {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+@media (min-width: 768px) {
+  .section__heading {
+    max-inline-size: 236px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section__heading {
+    max-inline-size: 315px;
+  }
+}
+
+/* Список карточек */
+
+.section__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+/* Заголовок карточки */
+
+.section__card-heading {
+  margin-block-end: var(--spacing-xs);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.section__card-heading_regular {
+  font-weight: 400;
+}
+
+/* Текст карточки */
+
+.section__card-text {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+/* ==============================
+   СЕКЦИЯ «ЧТО» — горизонтальный список на desktop
+   ============================== */
+
+@media (min-width: 768px) {
+  .what {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .what .section__heading {
+    max-inline-size: 236px;
+  }
+
+  .what__list {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .what__list .section__list-item {
+    flex: 1;
+  }
+}
+
+/* ==============================
+   СЕКЦИЯ «КАК» — один заголовок + вложенный список
+   ============================== */
+
+.how__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+/* ==============================
+   ССЫЛКИ В ТЕКСТЕ
+   ============================== */
+
+.text-link {
+  text-decoration: none;
+  text-shadow: 2px 2px 0 var(--color-accent);
+}
+
+.text-link:hover {
+  border-block-end: 1px solid currentColor;
+}
+
+.text-link:focus {
+  outline: none;
+}
+
+.text-link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ==============================
+   ГАЛЕРЕЯ
+   ============================== */
+
+.gallery {
+  display: grid;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-m) var(--spacing-xs);
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    gap: var(--spacing-s);
+    padding: var(--spacing-l) var(--spacing-s);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    padding: var(--spacing-xl) var(--spacing-s);
+  }
+}
+
+.gallery__heading {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.gallery__list {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+@media (min-width: 768px) {
+  .gallery__list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-s);
+  }
+
+  .gallery__list-item:nth-child(1) {
+    grid-column: 1 / 3;
+  }
+
+  .gallery__list-item:nth-child(2) {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+
+  .gallery__list-item:nth-child(3) {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .gallery__list-item:nth-child(4) {
+    grid-row: 2 / 4;
+    grid-column: 2;
+  }
+
+  .gallery__list-item:nth-child(5) {
+    grid-column: 3;
+    grid-row: 3;
+  }
+}
+
+.gallery__img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* ==============================
+   ФУТЕР
+   ============================== */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 100vh;
+}
+
+.footer__title {
+  color: var(--color-heading);
+  font-weight: 700;
+  font-size: var(--font-size-h1-mobile);
+  line-height: 0.825;
+  text-shadow: 4px 4px 0 var(--color-accent);
+  background: transparent;
+}
+
+@media (min-width: 1024px) {
+  .footer__title {
+    font-size: var(--font-size-h1-desktop);
+  }
 }
