@@ -1,6 +1,7 @@
 /* Светлая тема — принудительное переключение по классу на <html> */
+/* Более специфичный селектор :root.theme-light перекрывает авто-тёмную тему */
 
-.theme-light {
+:root.theme-light {
   --color-accent: #ff8dcb;
   --color-accent-background: #353430;
   --color-heading: #ffc2e6;
@@ -15,7 +16,7 @@
 
 /* В светлой теме элемент REC скрыт */
 
-.theme-light .decorative-rec {
+:root.theme-light .decorative-rec {
   visibility: hidden;
 }
 

@@ -69,6 +69,7 @@
 
 /* ==============================
    ДЕКОРАТИВНЫЙ ЭЛЕМЕНТ REC
+   Точка реализована через псевдоэлемент ::after
    ============================== */
 
 .decorative-rec {
@@ -84,8 +85,9 @@
   text-transform: uppercase;
 }
 
-.decorative-rec__dot {
-  display: block;
+.decorative-rec::after {
+  content: '';
+  display: inline-block;
   inline-size: 9px;
   block-size: 9px;
   border-radius: 50%;
@@ -106,10 +108,11 @@
 .header {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto 1fr;
-  align-items: center;
+  /* 3 ряда: верхний (меню/пустота), центр (h1), нижний (подзаголовок) */
+  grid-template-rows: 1fr min-content 1fr;
   padding: var(--spacing-xs);
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 668px;
 }
 
 @media (min-width: 768px) {
@@ -119,21 +122,22 @@
   }
 }
 
-/* Меню переключения тем */
+/* Меню переключения тем —
+   верхний ряд, правый столбец, прижато вправо и к центру по вертикали */
 
 .header__theme-menu {
   grid-column: 1 / -1;
+  grid-row: 1;
   justify-self: end;
-  align-self: start;
-  /* Отступ чтобы меню не перекрывалось с абсолютным элементом REC */
-  padding-block-start: 36px;
+  align-self: center;
 }
 
 @media (min-width: 768px) {
   .header__theme-menu {
     grid-column: 2;
     grid-row: 1;
-    padding-block-start: 0;
+    justify-self: end;
+    align-self: center;
   }
 }
 
@@ -142,6 +146,7 @@
     grid-column: 1 / -1;
     grid-row: 1;
     justify-self: center;
+    align-self: start;
   }
 }
 
@@ -185,13 +190,15 @@
   border-color: var(--color-decorative);
 }
 
-/* Заголовок h1 */
+/* Заголовок h1 — центральный ряд грида */
 
 .header__title {
   grid-column: 1 / -1;
+  grid-row: 2;
   align-self: center;
   color: var(--color-heading);
   font-weight: 700;
+  /* Мобильный clamp: от 7.25rem до 7.5rem */
   font-size: var(--font-size-h1-mobile);
   line-height: 0.825;
   text-shadow: 4px 4px 0 var(--color-accent);
@@ -201,19 +208,16 @@
 @media (min-width: 768px) {
   .header__title {
     margin-inline-start: calc(-1 * var(--spacing-s));
-  }
-}
-
-@media (min-width: 1024px) {
-  .header__title {
+    /* Планшетно-десктопный clamp: от 7.5rem до 9.8125rem */
     font-size: var(--font-size-h1-desktop);
   }
 }
 
-/* Подзаголовок в шапке */
+/* Подзаголовок — нижний ряд, справа, выровнен по низу ячейки */
 
 .header__subtitle {
   grid-column: 1 / -1;
+  grid-row: 3;
   align-self: end;
   font-weight: 700;
   font-size: var(--font-size-base);
@@ -224,6 +228,8 @@
   .header__subtitle {
     grid-column: 2;
     grid-row: 3;
+    align-self: end;
+    justify-self: end;
   }
 }
 
@@ -435,20 +441,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 668px;
 }
 
 .footer__title {
   color: var(--color-heading);
   font-weight: 700;
+  /* Мобильный clamp: от 7.25rem до 7.5rem */
   font-size: var(--font-size-h1-mobile);
   line-height: 0.825;
   text-shadow: 4px 4px 0 var(--color-accent);
   background: transparent;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .footer__title {
+    /* Планшетно-десктопный clamp: от 7.5rem до 9.8125rem */
     font-size: var(--font-size-h1-desktop);
   }
 }

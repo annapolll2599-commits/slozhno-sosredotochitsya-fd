@@ -1,7 +1,7 @@
 /* Тёмная тема — принудительное переключение по классу на <html> */
-/* Переопределяем только те переменные, которые отличаются от variables.css */
+/* Более специфичный селектор :root.theme-dark перекрывает авто-светлую тему */
 
-.theme-dark {
+:root.theme-dark {
   --color-accent: #ff0070;
   --color-accent-background: #000028;
   --color-heading: #db00ff;
@@ -12,4 +12,10 @@
   --color-rec: #ff0070;
   --color-corner: #ff0070;
   --background-image: url(../images/cover-image-dark.png);
+}
+
+/* В тёмной теме REC отображается */
+
+:root.theme-dark .decorative-rec {
+  visibility: visible;
 }
