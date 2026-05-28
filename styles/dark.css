@@ -1,10 +1,10 @@
 /* Тёмная тема — принудительное переключение по классу на <html> */
-/* Более специфичный селектор :root.theme-dark перекрывает авто-светлую тему */
 
 :root.theme-dark {
   --color-accent: #ff0070;
   --color-accent-background: #000028;
   --color-heading: #db00ff;
+  --color-section-heading: #ff0070;
   --color-text: #f1b2ce;
   --color-background: #000028;
   --color-button-hover: #ff007066;
@@ -15,7 +15,6 @@
 }
 
 /* В тёмной теме REC отображается */
-
-:root.theme-dark .decorative-rec {
-  visibility: visible;
+:root.theme-dark .decorative__element {
+  display: flex;
 }

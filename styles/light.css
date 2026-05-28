@@ -1,42 +1,45 @@
-/* Светлая тема — принудительное переключение по классу на <html> */
-/* Более специфичный селектор :root.theme-light перекрывает авто-тёмную тему */
-
-:root.theme-light {
-  --color-accent: #ff8dcb;
-  --color-accent-background: #353430;
-  --color-heading: #ffc2e6;
-  --color-text: #353430;
-  --color-background: #f4f4f4;
-  --color-button-hover: #32312d66;
-  --color-decorative: #353430;
-  --color-rec: transparent;
-  --color-corner: #353430;
-  --background-image: url(../images/cover-image-light.png);
-}
-
-/* В светлой теме элемент REC скрыт */
-
-:root.theme-light .decorative-rec {
-  visibility: hidden;
-}
-
-/* Автоматическое переключение по системной теме пользователя */
+/* ==============================
+   СВЕТЛАЯ ТЕМА — автоматически по системе
+   ============================== */
 
 @media (prefers-color-scheme: light) {
   :root {
     --color-accent: #ff8dcb;
     --color-accent-background: #353430;
-    --color-heading: #ffc2e6;
+    --color-heading: #353430;
+    --color-section-heading: #353430;
     --color-text: #353430;
-    --color-background: #f4f4f4;
-    --color-button-hover: #32312d66;
+    --color-background: #fff1f7;
+    --color-button-hover: rgba(50, 49, 45, 0.4);
     --color-decorative: #353430;
     --color-rec: transparent;
     --color-corner: #353430;
     --background-image: url(../images/cover-image-light.png);
   }
 
-  .decorative-rec {
-    visibility: hidden;
+  .decorative__element {
+    display: none;
   }
+}
+
+/* ==============================
+   СВЕТЛАЯ ТЕМА — принудительно по кнопке «День»
+   ============================== */
+
+:root.theme-light {
+  --color-accent: #ff8dcb;
+  --color-accent-background: #353430;
+  --color-heading: #353430;
+  --color-section-heading: #353430;
+  --color-text: #353430;
+  --color-background: #fff1f7;
+  --color-button-hover: rgba(50, 49, 45, 0.4);
+  --color-decorative: #353430;
+  --color-rec: transparent;
+  --color-corner: #353430;
+  --background-image: url(../images/cover-image-light.png);
+}
+
+:root.theme-light .decorative__element {
+  display: none;
 }
