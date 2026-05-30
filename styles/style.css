@@ -1,12 +1,10 @@
 .page {
   margin: 0 auto;
-  font-family: var(--font-family, monospace);
-  font-size: var(--font-size-base);
+  font-family: var(--font, monospace);
+  font-size: var(--font-size);
   font-weight: 400;
   line-height: 23.4px;
-  color: var(--color-text);
-  background-color: var(--color-background);
-  background-image: var(--background-image);
+  background-image: var(--backgroung-image);
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -15,7 +13,8 @@
 /*Шапка*/
 
 .header {
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 668px;
   padding: 20px;
   display: grid;
   position: relative;
@@ -32,7 +31,7 @@
 
 .header__theme-menu-button {
   padding: 0 13px;
-  color: var(--color-decorative);
+  color: var(--btn-color);
   text-align: center;
   border: none;
   background: transparent;
@@ -42,7 +41,7 @@
 
 .header__theme-menu-button_active {
   pointer-events: none;
-  border: 1px solid var(--color-decorative);
+  border: 1px solid var(--btn-color);
 }
 
 .header__theme-menu-button:focus {
@@ -50,11 +49,11 @@
 }
 
 .header__theme-menu-button:focus-visible {
-  border-bottom: 1px solid var(--color-decorative);
+  border-bottom: 1px solid var(--btn-color);
 }
 
 .header__theme-menu-button:hover {
-  border: 1px solid var(--color-button-hover);
+  border: 1px solid rgba(255, 0, 112, 0.40);
   cursor: pointer;
 }
 
@@ -64,10 +63,11 @@
   position: absolute;
   top: 0;
   right: 0;
+  content: "";
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--color-rec);
+  color: var(--btn-color);
   text-align: center;
   padding-right: 8px;
   text-transform: uppercase;
@@ -80,19 +80,20 @@
   inline-size: 9px;
   block-size: 9px;
   border-radius: 50%;
-  background-color: var(--color-accent);
-  filter: drop-shadow(0px 0px 4px var(--color-accent));
+  background-color: var(--accent-color);
+  fill: var(--accent-color);
+  filter: drop-shadow(0px 0px 4px var(--accent-color));
 }
 
-/* Стили углов */
+/* Стили углов*/
 
 .frame::before {
   position: absolute;
   top: 0;
   right: 0;
   content: "";
-  border-top: 1px solid var(--color-corner);
-  border-right: 1px solid var(--color-corner);
+  border-top: 1px solid var(--btn-color);
+  border-right: 1px solid var(--btn-color);
   inline-size: 25px;
   block-size: 25px;
   margin: 20px;
@@ -103,8 +104,8 @@
   bottom: 0;
   left: 0;
   content: "";
-  border-bottom: 1px solid var(--color-corner);
-  border-left: 1px solid var(--color-corner);
+  border-bottom: 1px solid var(--btn-color);
+  border-left: 1px solid var(--btn-color);
   inline-size: 25px;
   block-size: 25px;
   margin: 20px;
@@ -114,24 +115,23 @@
 
 .header__title {
   margin-left: -20px;
-  text-shadow: 4px 4px 0 var(--color-accent);
-  font-size: var(--font-size-h1-desktop);
-  color: var(--color-heading);
+  text-shadow: 4px 4px 0 var(--accent-color);
+  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  color: var(--title-color);
   font-weight: 700;
   line-height: 82.5%;
 }
 
 .title-decor {
   font-weight: 700;
-  background-color: var(--color-accent);
-  font-size: var(--font-size-base);
+  background-color: var(--accent-color);
+  font-size: var(--font-size);
   line-height: 23.4px;
-  color: var(--color-accent-background);
+  color: var(--sub-text-color);
 }
 
 .header__text {
   max-inline-size: 491px;
-  max-block-size: 71px;
   justify-self: end;
   align-self: center;
 }
@@ -139,28 +139,38 @@
 /*Дизайн заголовков всех секций*/
 
 .question__section-title {
-  color: var(--color-section-heading);
+  color: var(--btn-color);
   font-weight: 700;
   line-height: 23.4px;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size);
+}
+
+/*Общие стили карточек*/
+
+.card__title {
+  font-weight: 700;
+}
+
+.card__title--normal-weight {
+  margin-block-end: 10px;
 }
 
 /*Дизайн текста всех секций*/
 
 .question__section-answer-text {
-  font-size: var(--font-size-base);
-  color: var(--color-text);
+  font-size: var(--font-size);
+  color: var(--text-color);
 }
 
 /*Ссылки*/
 
 .question__section-answer-link {
   text-decoration: none;
-  text-shadow: 2px 2px 0 var(--color-accent);
+  text-shadow: 2px 2px 0 var(--accent-color);
 }
 
 .question__section-answer-link:hover {
-  border-bottom: 1px solid var(--color-text);
+  border-bottom: 1px solid var(--text-color);
 }
 
 .question__section-answer-link:focus {
@@ -168,12 +178,12 @@
 }
 
 .question__section-answer-link:focus-visible {
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--text-color);
 }
 
 /*Первая секция с вопросами*/
 
-.question__section__one {
+.question__section-causes {
   display: grid;
   grid-template-columns: 34% 66%;
   padding-block-start: 60px;
@@ -192,30 +202,26 @@
 
 /*Вторая секция с вопросами*/
 
-.question__section-two {
+.question__section-factors {
   padding-block-start: 80px;
   padding-block-end: 80px;
   margin: 0 20px;
 }
 
-.question__section-answer-two-container {
+.question__section-answer-factors-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   padding-block-start: 20px;
 }
 
-.question__section-title-two {
+.question__section-title-factors {
   max-inline-size: 315px;
-}
-
-.question__section-answer-title-two {
-  margin-block-end: 10px;
 }
 
 /*Третья секция с вопросами*/
 
-.question__section__fhree {
+.question__section-tips {
   display: grid;
   grid-template-columns: 34% 66%;
   padding-block-end: 80px;
@@ -226,12 +232,12 @@
   font-weight: 400;
 }
 
-.question__section-answer-fhree {
+.question__section-answer-tips {
   display: grid;
   gap: 20px;
 }
 
-.question__section-answer-text-fhree {
+.question__section-answer-text-tips {
   padding-block-start: 10px;
 }
 
@@ -284,7 +290,8 @@
 /*Подвал*/
 
 .footer {
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 668px;
   padding: 20px;
   position: relative;
   display: flex;
@@ -293,9 +300,9 @@
 }
 
 .footer__title {
-  text-shadow: 4px 4px 0 var(--color-accent);
-  font-size: var(--font-size-h1-desktop);
-  color: var(--color-heading);
+  text-shadow: 4px 4px 0 var(--accent-color);
+  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  color: var(--title-color);
   font-weight: 700;
   line-height: 82.5%;
 }
@@ -317,31 +324,30 @@
 
   .header__text {
     max-inline-size: 364px;
-    max-block-size: 117px;
   }
 
   .header__title {
-    font-size: var(--font-size-h1-desktop);
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 
-  .question__section__one {
+  .question__section-causes {
     grid-template-columns: 33% 67%;
     gap: 20px;
     padding-inline-end: 20px;
   }
 
-  .question__section-answer-two-container {
+  .question__section-answer-factors-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding-block-start: 20px;
   }
 
-  .question__section-title-two {
+  .question__section-title-factors {
     max-inline-size: 236px;
   }
 
-  .question__section__fhree {
+  .question__section-tips {
     display: grid;
     grid-template-columns: 35% 65%;
     padding-block-end: 80px;
@@ -363,15 +369,14 @@
 
   .header__title {
     margin-left: 0px;
-    font-size: var(--font-size-h1-mobile);
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   }
 
   .header__text {
     max-inline-size: 355px;
-    max-block-size: 117px;
   }
 
-  .question__section__one {
+  .question__section-causes {
     margin: 0px 10px;
     padding: 40px 0 0 0;
     display: flex;
@@ -379,23 +384,23 @@
     gap: 20px;
   }
 
-  .question__section-two {
+  .question__section-factors {
     margin: 0 10px;
     padding-block-start: 50px;
     padding-inline-end: 0;
     padding-block-end: 50px;
   }
 
-  .question__section-title-two {
+  .question__section-title-factors {
     min-inline-size: 355px;
   }
 
-  .question__section-answer-two-container {
+  .question__section-answer-factors-container {
     display: flex;
     flex-direction: column;
   }
 
-  .question__section__fhree {
+  .question__section-tips {
     margin: 0 10px;
     display: flex;
     flex-direction: column;
@@ -425,7 +430,7 @@
   }
 
   .footer__title {
-    font-size: var(--font-size-h1-mobile);
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   }
 
   .decorative__element {
